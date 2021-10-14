@@ -37,23 +37,30 @@ void intopos(char* pchExpr) {
                 chEx = pop();
             }
         } else {
-            int iPr1 = check_priority(peek());
-            int iPr2 = check_priority(pchExpr[i]);
+            int p1 = check_priority(peek());
+            int p2 = check_priority(pchExpr[i]);
             unsigned short k = isEmpty();
             char d;
-            while (iPr1 >= iPr2 && k == 0) {
+            while (p1 >= p2 && k == 0) {
                 d = pop();
                 printf("%c", d);
-                iPr1 = check_priority(peek());
+                p1 = check_priority(peek());
                 k = isEmpty();
             }
             push(pchExpr[i]);
+
+            // k = isEmpty();
+            // while (k == 0) {
+            //     d = pop();
+            //     printf("%c", d);
+            //     k = isEmpty();
+            // }
         }
     }
 }
 
 int main() {
-    intopos("(a+b)");
+    intopos("(a-b)");
     while (!isEmpty()) {
         char a = pop();
         printf("%c", a);
